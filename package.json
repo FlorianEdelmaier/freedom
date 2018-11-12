@@ -17,7 +17,14 @@
   },
   "homepage": "https://github.com/FlorianEdelmaier/freedom#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "babel-watch": "^2.0.7",
+    "chai": "^4.2.0",
     "jsdom": "13.0.0",
+    "jsdom-global": "^3.0.2",
     "mocha": "5.2.0"
   }
 }
