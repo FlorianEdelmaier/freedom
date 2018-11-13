@@ -1,9 +1,11 @@
+import Element from './element';
+
 const createElement = (tag, ns) => {
     const element = ns ? document.createElementNS(ns, tag) : document.createElement(tag)
-    return element
+    return new Element(element)
 }
 
-const createText = (str = '') => document.createTextNode(str)
+const createText = (str = '') => new Element(document.createTextNode(str))
 
 module.exports = {
     createElement,
