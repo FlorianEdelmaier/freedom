@@ -3,10 +3,19 @@ export default class Element {
     constructor(domNode, parentNode = undefined) {
         this._node = domNode
         this._parentNode = parentNode
+        this.rerender = true
     }
 
     get node() {
         return this._node
+    }
+
+    get style() {
+        return this._node.style;
+    }
+
+    get classNames() {
+        return this._node.classList;
     }
 
     setAttr(attr, value) {
@@ -16,13 +25,12 @@ export default class Element {
 
     // do not use setAttribute for style otherwise style is overwritten
     setStyle(styles) {
-        console.log('existing styles:', this._node.style._values)
-        // this._node.style = styles
-        let newStyle = Object.assign({}, this._node.style._values, ...styles.split(';'))
-        this._node.style = newStyle.join(';')
-        //console.log('given styles:', ...styles.split(';'))
-        // let style = [...this._node.style, ...styles.split(';')]
-        // console.log(style)
+        let newStyle = {}
+        styles.split(';').map(sub => sub.split(':')).forEach(x => newStyle[x[0]] = x[1]);
+        let mergedStyle = Object.assign({}, this._node.style._values, newStyle)
+        let newStyleStr = Object.keys(mergedStyle).map(k => `${k}:${mergedStyle[k]}`).join(';')
+        console.log(newStyleStr)
+        this._node.style = newStyleStr;
         return this
     }
 
